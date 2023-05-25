@@ -16,6 +16,9 @@ namespace PROYECTO_EN_C_
     {
         private List<string> comentarios = new List<string>();
         private string archivoComentarios = "comentarios.txt";
+        private Comida pedidoComida = new Comida();
+        private Bebidas pedidoBebidas = new Bebidas();
+        private Postres pedidoPostres = new Postres();
         public frmMenu()
         {
             InitializeComponent();
@@ -65,6 +68,23 @@ namespace PROYECTO_EN_C_
             pnlindixCarrito.Visible = false;
             pnlindixInicio.Visible = true;
             pnlindixComentario.Visible = false;
+            pnlindixRecoger.Visible = false;
+        }
+        private void btnRecoger_Click(object sender, EventArgs e)
+        {            // Ajustar la altura del panel pnlComida para que coincida con la altura del botón btnComida
+            pnlRecoger.Height = btnRecoger.Height;
+
+            // Posicionar el panel pnlComida en la parte superior del botón btnComida
+            pnlRecoger.Top = btnRecoger.Height;
+
+            // Mostrar el panel pnlindxComidas y ocultar los demás paneles
+            pnlindxComidas.Visible = false;
+            pnlIndxBebidas.Visible = false;
+            pnlindixPostres.Visible = false;
+            pnlindixCarrito.Visible = false;
+            pnlindixInicio.Visible =false;
+            pnlindixComentario.Visible = false;
+            pnlindixRecoger.Visible = true;
         }
 
         private void btnComida_Click(object sender, EventArgs e)
@@ -82,6 +102,7 @@ namespace PROYECTO_EN_C_
             pnlindixCarrito.Visible = false;
             pnlindixInicio.Visible = false;
             pnlindixComentario.Visible = false;
+            pnlindixRecoger.Visible = false;
         }
 
         private void btnBebidas_Click(object sender, EventArgs e)
@@ -99,6 +120,7 @@ namespace PROYECTO_EN_C_
             pnlindixCarrito.Visible = false;
             pnlindixInicio.Visible = false;
             pnlindixComentario.Visible = false;
+            pnlindixRecoger.Visible = false;
         }
 
         private void btnPostres_Click(object sender, EventArgs e)
@@ -116,6 +138,7 @@ namespace PROYECTO_EN_C_
             pnlindixCarrito.Visible = false;
             pnlindixInicio.Visible = false;
             pnlindixComentario.Visible = false;
+            pnlindixRecoger.Visible = false;
         }
 
         private void btnCarrito_Click(object sender, EventArgs e)
@@ -133,6 +156,7 @@ namespace PROYECTO_EN_C_
             pnlindixCarrito.Visible = true;
             pnlindixInicio.Visible = false;
             pnlindixComentario.Visible = false;
+            pnlindixRecoger.Visible = false;
         }
 
         private void btnComentarios_Click(object sender, EventArgs e)
@@ -150,8 +174,27 @@ namespace PROYECTO_EN_C_
             pnlindixCarrito.Visible = false;
             pnlindixInicio.Visible = false;
             pnlindixComentario.Visible = true;
+            pnlindixRecoger.Visible = false;
         }
-
+        //Creeamos el evento para cuando seleccione una cantidad en el nud a la hora de precionar agregar al carrito los regrese al valor 0
+        private void LimpiarV()
+        {
+            nudAgua.Value = 0;
+            nudBrochetas.Value = 0;
+            nudBurrito.Value = 0;
+            nudCafe.Value = 0;
+            nudCerveza.Value = 0;
+            nudHamburguesa.Value = 0;
+            nudHelado.Value = 0;
+            nudHotDog.Value = 0;
+            nudJugo.Value = 0;
+            nudNugget.Value = 0;
+            nudPastel.Value = 0;
+            nudPay.Value = 0;
+            nudPizza.Value = 0;
+            nudRefresco.Value = 0;
+            nudTe.Value = 0;
+        }
         private void btnAggComida_Click(object sender, EventArgs e)
         {
             // Obtener las cantidades de los NumericUpDown
@@ -161,6 +204,8 @@ namespace PROYECTO_EN_C_
             int brochetasCantidad = (int)nudBrochetas.Value;
             int hotDogCantidad = (int)nudHotDog.Value;
             int nuggetCantidad = (int)nudNugget.Value;
+
+
 
             // Crear una instancia de la clase Compras
             Compras compra = new Compras();
@@ -204,6 +249,7 @@ namespace PROYECTO_EN_C_
                 dgvCarrito.Rows.Add("Nuggets", nuggetCantidad, compra.Nuggets, nuggetPrecioTotal);
             }
 
+            LimpiarV();
         }
 
         private void btnAggBebidas_Click(object sender, EventArgs e)
@@ -252,6 +298,8 @@ namespace PROYECTO_EN_C_
             {
                 dgvCarrito.Rows.Add("Té Helado", TeCantidad, compra.Té, TePrecioTotal);
             }
+
+            LimpiarV();
             
         }
 
@@ -285,6 +333,8 @@ namespace PROYECTO_EN_C_
             {
                 dgvCarrito.Rows.Add("Pay", PayCantidad, compra.Pay, PayPrecioTotal);
             }
+
+            LimpiarV();
 
         }
 
@@ -514,5 +564,220 @@ namespace PROYECTO_EN_C_
 
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnAggComidas_Click(object sender, EventArgs e)
+        {
+            pedidoComida.MostrarTiposPlatillos();
+            int seleccion;
+            if (int.TryParse(InputBox("Ingrese el número del platillo que desea agregar:", "Agregar Platillo", 500, 300), out seleccion))
+            {
+                string platillo = pedidoComida.SeleccionarPlatillo(seleccion);
+                if (!string.IsNullOrWhiteSpace(platillo))
+                {
+                    int cantidad;
+                    if (int.TryParse(InputBox($"Ingrese la cantidad de {platillo}:", "Agregar Cantidad", 500, 300), out cantidad))
+                    {
+                        pedidoComida.AgregarPlatillo(platillo, cantidad);
+                        MessageBox.Show($"Se ha seleccionado {cantidad} {platillo}(s).");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cantidad inválida. Intente nuevamente.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Platillo inválido. Intente nuevamente.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selección inválida. Intente nuevamente.");
+            }
+        }
+
+        private string InputBox(string prompt, string title, int width, int height)
+        {
+            Form promptForm = new Form();
+            promptForm.Width = width;
+            promptForm.Height = height;
+            promptForm.Text = title;
+
+            Label lblPrompt = new Label() { Left = 20, Top = 20, Text = prompt };
+            lblPrompt.Font = new Font(lblPrompt.Font.FontFamily, 12, lblPrompt.Font.Style);
+            TextBox txtInput = new TextBox() { Left = 50, Top = 100, Width = width - 0 };
+            Button btnOk = new Button() { Text = "Aceptar", Left = width - 100, Width = 75, Top = height - 70, DialogResult = DialogResult.OK };
+            Button btnCancel = new Button() { Text = "Cancelar", Left = width - 200, Width = 75, Top = height - 70, DialogResult = DialogResult.Cancel };
+
+            promptForm.Controls.Add(lblPrompt);
+            promptForm.Controls.Add(txtInput);
+            promptForm.Controls.Add(btnOk);
+            promptForm.Controls.Add(btnCancel);
+
+            DialogResult result = promptForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                return txtInput.Text;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            string nombre = txtName.Text.Trim();
+            string telefono = txtNumeroTelefonico.Text.Trim();
+            string hora = txtHora.Text.Trim();
+
+            List<string> ordenComida = pedidoComida.ObtenerOrden();
+            List<string> ordenBebidas = pedidoBebidas.ObtenerOrden();
+            List<string> ordenPostres = pedidoPostres.ObtenerOrden();
+
+            decimal total = pedidoComida.CalcularTotal() + pedidoBebidas.CalcularTotal() + pedidoPostres.CalcularTotal();
+
+            string mensaje = $"Nombre: {nombre}" + Environment.NewLine;
+            mensaje += $"Teléfono: {telefono}" + Environment.NewLine;
+            mensaje += $"Hora: {hora}" + Environment.NewLine;
+            mensaje += Environment.NewLine;
+            mensaje += "Orden:" + Environment.NewLine;
+            mensaje += "Comida:" + Environment.NewLine;
+            mensaje += (ordenComida.Count > 0) ? string.Join(Environment.NewLine, ordenComida) : "No se ha seleccionado comida";
+            mensaje += Environment.NewLine;
+            mensaje += "Bebidas:" + Environment.NewLine;
+            mensaje += (ordenBebidas.Count > 0) ? string.Join(Environment.NewLine, ordenBebidas) : "No se ha seleccionado bebida";
+            mensaje += Environment.NewLine;
+            mensaje += "Postres:" + Environment.NewLine;
+            mensaje += (ordenPostres.Count > 0) ? string.Join(Environment.NewLine, ordenPostres) : "No se ha seleccionado postre";
+            mensaje += Environment.NewLine;
+
+            MessageBox.Show(mensaje, "Orden", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnAggBebida_Click(object sender, EventArgs e)
+        {
+            pedidoBebidas.MostrarTiposPlatillos();
+            int seleccion;
+            if (int.TryParse(InputBox("Ingrese el número de la bebida que desea agregar:", "Agregar Bebida", 500, 300), out seleccion))
+            {
+                string bebida = pedidoBebidas.SeleccionarPlatillo(seleccion);
+                if (!string.IsNullOrWhiteSpace(bebida))
+                {
+                    int cantidad;
+                    if (int.TryParse(InputBox($"Ingrese la cantidad de {bebida}:", "Agregar Cantidad", 500, 300), out cantidad))
+                    {
+                        pedidoBebidas.AgregarPlatillo(bebida, cantidad);
+                        MessageBox.Show($"Se ha seleccionado {cantidad} {bebida}(s).");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cantidad inválida. Intente nuevamente.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bebida inválida. Intente nuevamente.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selección inválida. Intente nuevamente.");
+            }
+        }
+
+        private string InputBoox(string prompt, string title, int width, int height)
+        {
+            Form promptForm = new Form();
+            promptForm.Width = width;
+            promptForm.Height = height;
+            promptForm.Text = title;
+
+            Label lblPrompt = new Label() { Left = 20, Top = 20, Text = prompt };
+            lblPrompt.Font = new Font(lblPrompt.Font.FontFamily, 10, lblPrompt.Font.Style);
+            TextBox txtInput = new TextBox() { Left = 20, Top = 50, Width = width - 40 };
+            Button btnOk = new Button() { Text = "Aceptar", Left = width - 100, Width = 75, Top = height - 70, DialogResult = DialogResult.OK };
+            Button btnCancel = new Button() { Text = "Cancelar", Left = width - 200, Width = 75, Top = height - 70, DialogResult = DialogResult.Cancel };
+
+            promptForm.Controls.Add(lblPrompt);
+            promptForm.Controls.Add(txtInput);
+            promptForm.Controls.Add(btnOk);
+            promptForm.Controls.Add(btnCancel);
+
+            DialogResult result = promptForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                return txtInput.Text;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        private void btnAggPostres_Click(object sender, EventArgs e)
+        {
+            pedidoPostres.MostrarTiposPlatillos();
+            int seleccion;
+            if (int.TryParse(InputBox("Ingrese el número del postre que desea agregar:", "Agregar Postre", 500, 300), out seleccion))
+            {
+                string postre = pedidoPostres.SeleccionarPlatillo(seleccion);
+                if (!string.IsNullOrWhiteSpace(postre))
+                {
+                    int cantidad;
+                    if (int.TryParse(InputBox($"Ingrese la cantidad de {postre}:", "Agregar Cantidad", 500, 300), out cantidad))
+                    {
+                        pedidoPostres.AgregarPlatillo(postre, cantidad);
+                        MessageBox.Show($"Se ha seleccionado {cantidad} {postre}(s).");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cantidad inválida. Intente nuevamente.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Postre inválido. Intente nuevamente.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selección inválida. Intente nuevamente.");
+            }
+        }
+
+        private string InputBooox(string prompt, string title, int width, int height)
+        {
+            Form promptForm = new Form();
+            promptForm.Width = width;
+            promptForm.Height = height;
+            promptForm.Text = title;
+
+            Label lblPrompt = new Label() { Left = 20, Top = 20, Text = prompt };
+            lblPrompt.Font = new Font(lblPrompt.Font.FontFamily, 10, lblPrompt.Font.Style);
+            TextBox txtInput = new TextBox() { Left = 20, Top = 50, Width = width - 40 };
+            Button btnOk = new Button() { Text = "Aceptar", Left = width - 100, Width = 75, Top = height - 70, DialogResult = DialogResult.OK };
+            Button btnCancel = new Button() { Text = "Cancelar", Left = width - 200, Width = 75, Top = height - 70, DialogResult = DialogResult.Cancel };
+
+            promptForm.Controls.Add(lblPrompt);
+            promptForm.Controls.Add(txtInput);
+            promptForm.Controls.Add(btnOk);
+            promptForm.Controls.Add(btnCancel);
+
+            DialogResult result = promptForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                return txtInput.Text;
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }
+

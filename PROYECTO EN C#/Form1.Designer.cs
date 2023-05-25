@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.pnlLeftSize = new System.Windows.Forms.Panel();
+            this.pnlRecoger = new System.Windows.Forms.Panel();
+            this.btnRecoger = new System.Windows.Forms.Button();
             this.pnlComentarios = new System.Windows.Forms.Panel();
             this.btnComentarios = new System.Windows.Forms.Button();
             this.pnlBebidas = new System.Windows.Forms.Panel();
@@ -43,6 +45,7 @@
             this.btnComida = new System.Windows.Forms.Button();
             this.pnlTopSize = new System.Windows.Forms.Panel();
             this.pnlindixInicio = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.Label14 = new System.Windows.Forms.Label();
             this.pnlindixComentario = new System.Windows.Forms.Panel();
@@ -138,6 +141,17 @@
             this.pnlRefrescos = new System.Windows.Forms.Panel();
             this.Label12 = new System.Windows.Forms.Label();
             this.btnRefresco = new System.Windows.Forms.Button();
+            this.pnlindixRecoger = new System.Windows.Forms.Panel();
+            this.btnOrden = new System.Windows.Forms.Button();
+            this.txtNumeroTelefonico = new System.Windows.Forms.TextBox();
+            this.txtHora = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.Label30 = new System.Windows.Forms.Label();
+            this.Label31 = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.btnAggPostres = new System.Windows.Forms.Button();
+            this.btnAggBebida = new System.Windows.Forms.Button();
+            this.btnAggComidas = new System.Windows.Forms.Button();
             this.pnlLeftSize.SuspendLayout();
             this.pnlindixInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
@@ -177,11 +191,14 @@
             this.pnlAgua.SuspendLayout();
             this.pnlJugos.SuspendLayout();
             this.pnlRefrescos.SuspendLayout();
+            this.pnlindixRecoger.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeftSize
             // 
             this.pnlLeftSize.BackColor = System.Drawing.Color.Red;
+            this.pnlLeftSize.Controls.Add(this.pnlRecoger);
+            this.pnlLeftSize.Controls.Add(this.btnRecoger);
             this.pnlLeftSize.Controls.Add(this.pnlComentarios);
             this.pnlLeftSize.Controls.Add(this.btnComentarios);
             this.pnlLeftSize.Controls.Add(this.pnlBebidas);
@@ -199,6 +216,31 @@
             this.pnlLeftSize.Name = "pnlLeftSize";
             this.pnlLeftSize.Size = new System.Drawing.Size(212, 513);
             this.pnlLeftSize.TabIndex = 4;
+            // 
+            // pnlRecoger
+            // 
+            this.pnlRecoger.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(138)))), ((int)(((byte)(7)))));
+            this.pnlRecoger.Location = new System.Drawing.Point(3, 92);
+            this.pnlRecoger.Name = "pnlRecoger";
+            this.pnlRecoger.Size = new System.Drawing.Size(10, 45);
+            this.pnlRecoger.TabIndex = 15;
+            // 
+            // btnRecoger
+            // 
+            this.btnRecoger.FlatAppearance.BorderSize = 0;
+            this.btnRecoger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecoger.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecoger.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRecoger.Image = global::PROYECTO_EN_C_.Properties.Resources.pngwing_com__2_;
+            this.btnRecoger.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRecoger.Location = new System.Drawing.Point(18, 91);
+            this.btnRecoger.Name = "btnRecoger";
+            this.btnRecoger.Size = new System.Drawing.Size(203, 46);
+            this.btnRecoger.TabIndex = 14;
+            this.btnRecoger.Text = "       Recoger";
+            this.btnRecoger.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRecoger.UseVisualStyleBackColor = true;
+            this.btnRecoger.Click += new System.EventHandler(this.btnRecoger_Click);
             // 
             // pnlComentarios
             // 
@@ -275,7 +317,7 @@
             // pnlNosotros
             // 
             this.pnlNosotros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(138)))), ((int)(((byte)(7)))));
-            this.pnlNosotros.Location = new System.Drawing.Point(0, 31);
+            this.pnlNosotros.Location = new System.Drawing.Point(3, 3);
             this.pnlNosotros.Name = "pnlNosotros";
             this.pnlNosotros.Size = new System.Drawing.Size(10, 45);
             this.pnlNosotros.TabIndex = 7;
@@ -287,7 +329,7 @@
             this.btnInicio.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnInicio.Location = new System.Drawing.Point(12, 34);
+            this.btnInicio.Location = new System.Drawing.Point(15, 6);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(220, 45);
             this.btnInicio.TabIndex = 6;
@@ -355,12 +397,23 @@
             // 
             // pnlindixInicio
             // 
+            this.pnlindixInicio.Controls.Add(this.button1);
             this.pnlindixInicio.Controls.Add(this.PictureBox1);
             this.pnlindixInicio.Controls.Add(this.Label14);
             this.pnlindixInicio.Location = new System.Drawing.Point(212, 34);
             this.pnlindixInicio.Name = "pnlindixInicio";
             this.pnlindixInicio.Size = new System.Drawing.Size(708, 479);
             this.pnlindixInicio.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(575, 419);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 40);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "CERRAR APP";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PictureBox1
             // 
@@ -1318,17 +1371,130 @@
             this.btnRefresco.UseVisualStyleBackColor = false;
             this.btnRefresco.Click += new System.EventHandler(this.btnRefresco_Click);
             // 
+            // pnlindixRecoger
+            // 
+            this.pnlindixRecoger.Controls.Add(this.btnOrden);
+            this.pnlindixRecoger.Controls.Add(this.txtNumeroTelefonico);
+            this.pnlindixRecoger.Controls.Add(this.txtHora);
+            this.pnlindixRecoger.Controls.Add(this.txtName);
+            this.pnlindixRecoger.Controls.Add(this.Label30);
+            this.pnlindixRecoger.Controls.Add(this.Label31);
+            this.pnlindixRecoger.Controls.Add(this.lblNombre);
+            this.pnlindixRecoger.Controls.Add(this.btnAggPostres);
+            this.pnlindixRecoger.Controls.Add(this.btnAggBebida);
+            this.pnlindixRecoger.Controls.Add(this.btnAggComidas);
+            this.pnlindixRecoger.Location = new System.Drawing.Point(212, 34);
+            this.pnlindixRecoger.Name = "pnlindixRecoger";
+            this.pnlindixRecoger.Size = new System.Drawing.Size(708, 479);
+            this.pnlindixRecoger.TabIndex = 14;
+            // 
+            // btnOrden
+            // 
+            this.btnOrden.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrden.Location = new System.Drawing.Point(491, 369);
+            this.btnOrden.Name = "btnOrden";
+            this.btnOrden.Size = new System.Drawing.Size(143, 35);
+            this.btnOrden.TabIndex = 29;
+            this.btnOrden.Text = "Confirmar Orden";
+            this.btnOrden.UseVisualStyleBackColor = true;
+            this.btnOrden.Click += new System.EventHandler(this.btnOrdenar_Click);
+            // 
+            // txtNumeroTelefonico
+            // 
+            this.txtNumeroTelefonico.Location = new System.Drawing.Point(347, 121);
+            this.txtNumeroTelefonico.Multiline = true;
+            this.txtNumeroTelefonico.Name = "txtNumeroTelefonico";
+            this.txtNumeroTelefonico.Size = new System.Drawing.Size(202, 27);
+            this.txtNumeroTelefonico.TabIndex = 28;
+            // 
+            // txtHora
+            // 
+            this.txtHora.Location = new System.Drawing.Point(347, 200);
+            this.txtHora.Multiline = true;
+            this.txtHora.Name = "txtHora";
+            this.txtHora.Size = new System.Drawing.Size(202, 31);
+            this.txtHora.TabIndex = 27;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(346, 62);
+            this.txtName.Multiline = true;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(202, 28);
+            this.txtName.TabIndex = 26;
+            // 
+            // Label30
+            // 
+            this.Label30.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label30.Location = new System.Drawing.Point(75, 189);
+            this.Label30.Name = "Label30";
+            this.Label30.Size = new System.Drawing.Size(179, 62);
+            this.Label30.TabIndex = 25;
+            this.Label30.Text = "A Que Hora le Gustaria Recoger\r\n";
+            // 
+            // Label31
+            // 
+            this.Label31.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label31.Location = new System.Drawing.Point(75, 108);
+            this.Label31.Name = "Label31";
+            this.Label31.Size = new System.Drawing.Size(163, 63);
+            this.Label31.TabIndex = 24;
+            this.Label31.Text = "Numero De Telefono";
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(77, 62);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(124, 28);
+            this.lblNombre.TabIndex = 23;
+            this.lblNombre.Text = "Nombre";
+            // 
+            // btnAggPostres
+            // 
+            this.btnAggPostres.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAggPostres.Location = new System.Drawing.Point(74, 377);
+            this.btnAggPostres.Name = "btnAggPostres";
+            this.btnAggPostres.Size = new System.Drawing.Size(217, 39);
+            this.btnAggPostres.TabIndex = 22;
+            this.btnAggPostres.Text = "Agregar Postres";
+            this.btnAggPostres.UseVisualStyleBackColor = true;
+            this.btnAggPostres.Click += new System.EventHandler(this.btnAggPostres_Click);
+            // 
+            // btnAggBebida
+            // 
+            this.btnAggBebida.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAggBebida.Location = new System.Drawing.Point(74, 333);
+            this.btnAggBebida.Name = "btnAggBebida";
+            this.btnAggBebida.Size = new System.Drawing.Size(217, 38);
+            this.btnAggBebida.TabIndex = 21;
+            this.btnAggBebida.Text = "Agregar Bebidas";
+            this.btnAggBebida.UseVisualStyleBackColor = true;
+            this.btnAggBebida.Click += new System.EventHandler(this.btnAggBebida_Click);
+            // 
+            // btnAggComidas
+            // 
+            this.btnAggComidas.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAggComidas.Location = new System.Drawing.Point(74, 284);
+            this.btnAggComidas.Name = "btnAggComidas";
+            this.btnAggComidas.Size = new System.Drawing.Size(217, 43);
+            this.btnAggComidas.TabIndex = 20;
+            this.btnAggComidas.Text = "Agregar Comidas";
+            this.btnAggComidas.UseVisualStyleBackColor = true;
+            this.btnAggComidas.Click += new System.EventHandler(this.btnAggComidas_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 513);
+            this.Controls.Add(this.pnlindixRecoger);
+            this.Controls.Add(this.pnlindixComentario);
+            this.Controls.Add(this.pnlindxComidas);
+            this.Controls.Add(this.pnlindixInicio);
             this.Controls.Add(this.pnlindixCarrito);
             this.Controls.Add(this.pnlIndxBebidas);
             this.Controls.Add(this.pnlindixPostres);
-            this.Controls.Add(this.pnlindxComidas);
-            this.Controls.Add(this.pnlindixComentario);
-            this.Controls.Add(this.pnlindixInicio);
             this.Controls.Add(this.pnlTopSize);
             this.Controls.Add(this.pnlLeftSize);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1390,6 +1556,8 @@
             this.pnlJugos.PerformLayout();
             this.pnlRefrescos.ResumeLayout(false);
             this.pnlRefrescos.PerformLayout();
+            this.pnlindixRecoger.ResumeLayout(false);
+            this.pnlindixRecoger.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1505,6 +1673,20 @@
         internal System.Windows.Forms.Panel pnlRefrescos;
         internal System.Windows.Forms.Label Label12;
         internal System.Windows.Forms.Button btnRefresco;
+        private System.Windows.Forms.Button button1;
+        internal System.Windows.Forms.Panel pnlRecoger;
+        internal System.Windows.Forms.Button btnRecoger;
+        internal System.Windows.Forms.Panel pnlindixRecoger;
+        internal System.Windows.Forms.Button btnOrden;
+        internal System.Windows.Forms.TextBox txtNumeroTelefonico;
+        internal System.Windows.Forms.TextBox txtHora;
+        internal System.Windows.Forms.TextBox txtName;
+        internal System.Windows.Forms.Label Label30;
+        internal System.Windows.Forms.Label Label31;
+        internal System.Windows.Forms.Label lblNombre;
+        internal System.Windows.Forms.Button btnAggPostres;
+        internal System.Windows.Forms.Button btnAggBebida;
+        internal System.Windows.Forms.Button btnAggComidas;
     }
 }
 
